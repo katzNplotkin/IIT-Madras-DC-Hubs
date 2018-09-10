@@ -1,7 +1,7 @@
 # IIT Madras DC Hubs
 
 
-## Last Updated: Tue Sep 11 04:27:40 2018  
+## Last Updated: Tue Sep 11 04:32:14 2018  
 
 Hubs | Address | Status  
 --- | --- | ---  
@@ -13,7 +13,7 @@ Appetite_for_Destruction  |  dchub://10.22.17.247:511	|**online**
 
 
 
-Note: *This page is automatically generated*  
+Note: *This page is automatically generated. Internet connectivity may affect results shown*  
 
 ## Contribution and Hub Additions
 GitHub page : [IIT-Madras-DC-Hubs](https://github.com/katzNplotkin/IIT-Madras-DC-Hubs.git)  
