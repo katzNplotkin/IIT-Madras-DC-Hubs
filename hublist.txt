@@ -1,3 +1,6 @@
 # <HubName> <HubProtocol://HubIP:HubPort>
-FileStack dchub://10.22.26.216:511
-Sovngarde dchub://10.22.19.160:511
+Hubbakkudu  dchub://10.21.40.129:511
+Hakuna Matata  adc://10.22.9.152:1511
+FileStack  dchub://10.22.26.216:511
+Sovngarde  dchub://10.22.19.160:511
+Appetite for Destruction  dchub://10.22.17.247:511
