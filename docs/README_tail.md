@@ -1,7 +1,7 @@
 
 
 
-Note: *This page is automaticaally generated*  
+Note: *This page is automatically generated*  
 
 ## Contribution and Hub Additions
 GitHub page : [IIT-Madras-DC-Hubs](https://github.com/katzNplotkin/IIT-Madras-DC-Hubs.git)  

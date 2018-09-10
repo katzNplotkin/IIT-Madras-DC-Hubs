@@ -11,7 +11,7 @@ with open('hublist.txt','r') as hublistfile:
 # Check status of hubs using ping to port
 nm=nmap.PortScanner()    # Init PortScanner object
 with open('hubstat.txt','w') as hubstatfile:
-    hubstatfile.write('*Last Updated: {:%c}*  \n\n'.format(datetime.datetime.now()))
+    hubstatfile.write('## Last Updated: {:%c}  \n\n'.format(datetime.datetime.now()))
     hubstatfile.write('Hubs | Address | Status  \n')
     hubstatfile.write('--- | --- | ---  \n')
     for hub in hublist:
