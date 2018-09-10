@@ -2,7 +2,7 @@
 ## Auto-updated Hub Status
 
 
-Last Updated: Tue Sep 11 03:51:42 2018
+Last Updated: Tue Sep 11 03:52:20 2018
 
 Hubs | Address | Status  
 --- | --- | ---  
@@ -17,5 +17,5 @@ Appetite_for_Destruction  |  dchub://10.22.17.247:511	|**online**
 ## Contribution and Hub Additions
 GitHub page : [IIT-Madras-DC-Hubs](https://github.com/katzNplotkin/IIT-Madras-DC-Hubs.git)  
 Webpage : [IIT-Madras-DC-Hubs](https://katznplotkin.github.io/IIT-Madras-DC-Hubs)  
-Add unlisted hubs in *hublist.txt*.
+Add unlisted hubs in *hublist.txt*.  
 Fork a copy, make changes, create a pull request.  
