@@ -13,10 +13,10 @@ with open('hubstat.txt','w') as hubstatfile:
     for hub in hublist:
         if hub:    # Handle empty lines
             if hub[0] !='#':    # Handle comments
-                print(hub)
                 hubName=hub[0]
-                hubIP=hub[1]
-                hubPort=hub[2]
+                hubAddr=hub[1].split('://',1)[1]
+                hubIP=hubAddr.split(':',1)[0]
+                hubPort=hubAddr.split(':',1)[1]
                 hubscan=nm.scan(hubIP,hubPort,arguments='-PN')  # Scan using nmap
                 hubstatus=hubscan['scan'][hubIP]['status']['state']
                 hubstate=hubscan['scan'][hubIP]['tcp'][int(hubPort)]['state'] 
@@ -24,5 +24,6 @@ with open('hubstat.txt','w') as hubstatfile:
                     hubmode='online'
                 else:
                     hubmode='offline'
-                hubstatfile.write(hubName+'\t'+hubIP+'\t'+hubPort+'\t'+hubmode+'\n')
+                hubstatfile.write(hubName+'\t'+hub[1]+'\t'+hubmode+'\n')
 
+# Write to README file
