@@ -5,5 +5,5 @@
 cd ~/WorkInProgress/IIT-Madras-DC-Hubs
 git pull 
 python check_hub_status.py
-bash update_commit.sh
+bash auto_commit.sh
 git push
