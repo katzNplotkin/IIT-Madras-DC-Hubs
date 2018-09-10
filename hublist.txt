@@ -1,0 +1,3 @@
+# <HubName> <HubProtocol://HubIP:HubPort>
+FileStack dchub://10.22.26.216:511
+Sovngarde dchub://10.22.19.160:511
