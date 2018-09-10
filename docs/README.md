@@ -1,8 +1,7 @@
 # IIT Madras DC Hubs
-## Auto-updated Hub Status
 
 
-Last Updated: Tue Sep 11 04:07:07 2018
+*Last Updated: Tue Sep 11 04:14:18 2018*  
 
 Hubs | Address | Status  
 --- | --- | ---  
@@ -13,6 +12,8 @@ Sovngarde  |  dchub://10.22.19.160:511	|**online**
 Appetite_for_Destruction  |  dchub://10.22.17.247:511	|**online**   
 
 
+
+Note: *This page is automaticaally generated*  
 
 ## Contribution and Hub Additions
 GitHub page : [IIT-Madras-DC-Hubs](https://github.com/katzNplotkin/IIT-Madras-DC-Hubs.git)  
