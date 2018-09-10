@@ -12,6 +12,8 @@ with open('hublist.txt','r') as hublistfile:
 nm=nmap.PortScanner()    # Init PortScanner object
 with open('hubstat.txt','w') as hubstatfile:
     hubstatfile.write('Last Updated: {:%c}\n\n'.format(datetime.datetime.now()))
+    hubstatfile.write('Hubs | Address | Status  \n')
+    hubstatfile.write('--- | --- | ---  \n')
     for hub in hublist:
         if hub:    # Handle empty lines
             if hub[0] !='#':    # Handle comments
@@ -23,10 +25,10 @@ with open('hubstat.txt','w') as hubstatfile:
                 hubstatus=hubscan['scan'][hubIP]['status']['state']
                 hubstate=hubscan['scan'][hubIP]['tcp'][int(hubPort)]['state'] 
                 if (hubstatus=='up') and (hubstate=='open'):
-                    hubmode='online'
+                    hubmode='**online**'
                 else:
                     hubmode='offline'
-                hubstatfile.write(hubName+'\t'+hub[1]+'\t'+hubmode+'\n')
+                hubstatfile.write(hubName+'  |  '+hub[1]+'\t|'+hubmode+'   \n')
 
 # Write to README file
 readmeParts=['docs/README_head.md','hubstat.txt','docs/README_tail.md']

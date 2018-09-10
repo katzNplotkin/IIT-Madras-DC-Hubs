@@ -1,10 +1,13 @@
 # IIT Madras DC Hubs
 ## Auto-updated Hub Status
 
-Last Updated: Tue Sep 11 01:58:35 2018
 
-FileStack	dchub://10.22.26.216:511	offline
-Sovngarde	dchub://10.22.19.160:511	online
+Last Updated: Tue Sep 11 02:11:24 2018
+
+Hubs | Address | Status  
+--- | --- | ---  
+FileStack  |  dchub://10.22.26.216:511	|offline   
+Sovngarde  |  dchub://10.22.19.160:511	|**online**   
 
 
 
