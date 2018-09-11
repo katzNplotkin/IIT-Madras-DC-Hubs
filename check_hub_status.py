@@ -24,10 +24,18 @@ with open('hubstat.txt','w') as hubstatfile:
                 hubscan=nm.scan(hubIP,hubPort,arguments='-PN')  # Scan using nmap
                 hubstatus=hubscan['scan'][hubIP]['status']['state']
                 hubstate=hubscan['scan'][hubIP]['tcp'][int(hubPort)]['state'] 
-                if (hubstatus=='up') and (hubstate=='open'):
-                    hubmode='**online**'
-                else:
-                    hubmode='offline'
+                hubmode='offline'    # Default assumption
+                if (hubstatus=='up'):
+                    if (hubstate=='open'):
+                        hubmode='**online**'
+                    else:
+                        # Check alternate ports - 511, 1209
+                        for althubPort in ['511','1209']:
+                            hubscan=nm.scan(hubIP,althubPort,arguments='-PN')  # Scan using nmap
+                            hubstate=hubscan['scan'][hubIP]['tcp'][int(althubPort)]['state'] 
+                            if (hubstate=='open'):
+                                hubPort=althubPort
+                                hubmode='**online**'
                 hubstatfile.write(hubName+'  |  '+hub[1]+'\t|'+hubmode+'   \n')
 
 # Write to README file
