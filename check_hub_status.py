@@ -18,6 +18,7 @@ with open('hubstat.txt','w') as hubstatfile:
         if hub:    # Handle empty lines
             if hub[0] !='#':    # Handle comments
                 hubName=hub[0]
+                hubProtocol=hub[1].split('://',1)[0]
                 hubAddr=hub[1].split('://',1)[1]
                 hubIP=hubAddr.split(':',1)[0]
                 hubPort=hubAddr.split(':',1)[1]
@@ -36,7 +37,7 @@ with open('hubstat.txt','w') as hubstatfile:
                             if (hubstate=='open'):
                                 hubPort=althubPort
                                 hubmode='**online**'
-                hubstatfile.write(hubName+'  |  '+hub[1]+'\t|'+hubmode+'   \n')
+                hubstatfile.write(hubName+'  |  '+hubProtocol+'://'+hubIP+':'+hubPort+'\t|'+hubmode+'   \n')
 
 # Write to README file
 readmeParts=['docs/README_head.md','hubstat.txt','docs/README_tail.md']
