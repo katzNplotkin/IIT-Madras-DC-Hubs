@@ -1,7 +1,7 @@
 
 
 
-## Last Updated: Tue Sep 18 15:00:04 2018  
+## Last Updated: Tue Sep 18 16:00:04 2018  
 
 Hubs | Address | Status  
 --- | --- | ---  
@@ -10,7 +10,7 @@ Hakuna_Matata  |  adc://10.22.9.152:1511	|**online**
 FileStack  |  dchub://10.22.26.216:511	|offline   
 Sovngarde  |  dchub://10.22.19.160:511	|**online**   
 Appetite_for_Destruction  |  dchub://10.22.17.247:511	|offline   
-GGMU  |  dchub://10.21.138.13:1209	|offline   
+GGMU  |  dchub://10.21.138.13:1209	|**online**   
 
 
 
