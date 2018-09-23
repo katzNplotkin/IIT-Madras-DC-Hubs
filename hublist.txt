@@ -6,3 +6,4 @@ FileStack  dchub://10.22.26.216:511
 Sovngarde  dchub://10.22.19.160:511
 Appetite_for_Destruction  dchub://10.22.17.247:511
 GGMU  dchub://10.21.138.13:1209
+5050  dchub://10.22.50.50:5050
