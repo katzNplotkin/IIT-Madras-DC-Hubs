@@ -1,43 +1,56 @@
 #!/usr/bin/env python
 # Checks status of IIT Madras DC Hubs
 
-import nmap
-import datetime
+from nmap import PortScanner
+from datetime import datetime
 
-# Get hub ip and corresponding ports from hublist.txt to variable hublist
-with open('hublist.txt', 'r') as hublistfile:
-    hublist = [line.split() for line in hublistfile]
+
+def getHubData(hubline):
+    'Returns hub data extracted from list'
+    name = hubline[0].strip()
+    protocol = hubline[1].split('://', 1)[0].strip()
+    addr = hubline[1].split('://', 1)[1].strip()
+    ip = addr.split(':', 1)[0]
+    port = addr.split(':', 1)[1]
+    return [name, protocol, ip, port]
+
+
+def getHubStat(psObj, ip, port):
+    'Returns state and status after scanning using nmap'
+    hubscan = psObj.scan(ip, port, arguments='-PN')  # Scan using nmap
+    status = hubscan['scan'][ip]['status']['state']
+    state = hubscan['scan'][ip]['tcp'][int(port)]['state']
+    return [status, state]
+
+
+# Get hub ip and corresponding ports from hublist.csv to variable hublist
+with open('hublist.csv', 'r') as hublistfile:
+    hublist = [line.split(',') for line in hublistfile]
 
 # Check status of hubs using ping to port
-nm = nmap.PortScanner()    # Init PortScanner object
+psObj = PortScanner()    # Init PortScanner object
 with open('hubstat.md', 'w') as hubstatfile:
-    hubstatfile.write('## Last Updated: {:%c}  \n\n'.format(datetime.datetime.now()))
+    hubstatfile.write('## Last Updated: {:%c}  \n\n'.format(datetime.now()))
     hubstatfile.write('Hubs | Address | Status  \n')
     hubstatfile.write('--- | --- | ---  \n')
-    for hub in hublist:
-        if hub:    # Handle empty lines
-            if hub[0] != '#':    # Handle comments
-                hubName = hub[0]
-                hubProtocol = hub[1].split('://', 1)[0]
-                hubAddr = hub[1].split('://', 1)[1]
-                hubIP = hubAddr.split(':', 1)[0]
-                hubPort = hubAddr.split(':', 1)[1]
-                hubscan = nm.scan(hubIP, hubPort, arguments='-PN')  # Scan using nmap
-                hubstatus = hubscan['scan'][hubIP]['status']['state']
-                hubstate = hubscan['scan'][hubIP]['tcp'][int(hubPort)]['state']
-                hubmode = 'offline'    # Default assumption
-                if (hubstatus == 'up'):
-                    if (hubstate == 'open'):
-                        hubmode = '**online**'
-                    else:
-                        # Check alternate ports - 511, 1209
-                        for althubPort in ['511', '1209']:
-                            hubscan = nm.scan(hubIP, althubPort, arguments='-PN')  # Scan using nmap
-                            hubstate = hubscan['scan'][hubIP]['tcp'][int(althubPort)]['state']
-                            if (hubstate == 'open'):
-                                hubPort = althubPort
-                                hubmode = '**online**'
-                hubstatfile.write(hubName+'  |  '+hubProtocol+'://'+hubIP+':'+hubPort+'\t|'+hubmode+'   \n')
+    for hubline in hublist:
+        # Handle empty lines and comments
+        if hubline and (hubline[0][0] != '#'):
+            [name, protocol, ip, port] = getHubData(hubline)
+            [status, state] = getHubStat(psObj, ip, port)
+            mode = 'offline'    # Default assumption
+            if (status == 'up'):
+                if (state == 'open'):
+                    mode = '**online**'
+                else:
+                    # Check alternate ports - 511, 1209
+                    for altport in ['511', '1209']:
+                        [status, state] = getHubStat(psObj, ip, altport)
+                        if (state == 'open'):
+                            port = altport
+                            mode = '**online**'
+            strout = name+'  |  '+protocol+'://'+ip+':'+port+'\t|'+mode+'   \n'
+            hubstatfile.write(strout)
 
 # Write to README file
 readmeParts = ['docs/README_head.md', 'hubstat.md', 'docs/README_tail.md']
