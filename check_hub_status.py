@@ -10,7 +10,7 @@ with open('hublist.txt', 'r') as hublistfile:
 
 # Check status of hubs using ping to port
 nm = nmap.PortScanner()    # Init PortScanner object
-with open('hubstat.txt', 'w') as hubstatfile:
+with open('hubstat.md', 'w') as hubstatfile:
     hubstatfile.write('## Last Updated: {:%c}  \n\n'.format(datetime.datetime.now()))
     hubstatfile.write('Hubs | Address | Status  \n')
     hubstatfile.write('--- | --- | ---  \n')
@@ -40,7 +40,7 @@ with open('hubstat.txt', 'w') as hubstatfile:
                 hubstatfile.write(hubName+'  |  '+hubProtocol+'://'+hubIP+':'+hubPort+'\t|'+hubmode+'   \n')
 
 # Write to README file
-readmeParts = ['docs/README_head.md', 'hubstat.txt', 'docs/README_tail.md']
+readmeParts = ['docs/README_head.md', 'hubstat.md', 'docs/README_tail.md']
 with open('docs/README.md', 'w') as readmeFile:
     for fname in readmeParts:
         with open(fname, 'r') as infile:
