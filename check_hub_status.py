@@ -5,43 +5,43 @@ import nmap
 import datetime
 
 # Get hub ip and corresponding ports from hublist.txt to variable hublist
-with open('hublist.txt','r') as hublistfile:
-    hublist=[line.split() for line in hublistfile]
+with open('hublist.txt', 'r') as hublistfile:
+    hublist = [line.split() for line in hublistfile]
 
 # Check status of hubs using ping to port
-nm=nmap.PortScanner()    # Init PortScanner object
-with open('hubstat.txt','w') as hubstatfile:
+nm = nmap.PortScanner()    # Init PortScanner object
+with open('hubstat.txt', 'w') as hubstatfile:
     hubstatfile.write('## Last Updated: {:%c}  \n\n'.format(datetime.datetime.now()))
     hubstatfile.write('Hubs | Address | Status  \n')
     hubstatfile.write('--- | --- | ---  \n')
     for hub in hublist:
         if hub:    # Handle empty lines
-            if hub[0] !='#':    # Handle comments
-                hubName=hub[0]
-                hubProtocol=hub[1].split('://',1)[0]
-                hubAddr=hub[1].split('://',1)[1]
-                hubIP=hubAddr.split(':',1)[0]
-                hubPort=hubAddr.split(':',1)[1]
-                hubscan=nm.scan(hubIP,hubPort,arguments='-PN')  # Scan using nmap
-                hubstatus=hubscan['scan'][hubIP]['status']['state']
-                hubstate=hubscan['scan'][hubIP]['tcp'][int(hubPort)]['state'] 
-                hubmode='offline'    # Default assumption
-                if (hubstatus=='up'):
-                    if (hubstate=='open'):
-                        hubmode='**online**'
+            if hub[0] != '#':    # Handle comments
+                hubName = hub[0]
+                hubProtocol = hub[1].split('://', 1)[0]
+                hubAddr = hub[1].split('://', 1)[1]
+                hubIP = hubAddr.split(':', 1)[0]
+                hubPort = hubAddr.split(':', 1)[1]
+                hubscan = nm.scan(hubIP, hubPort, arguments='-PN')  # Scan using nmap
+                hubstatus = hubscan['scan'][hubIP]['status']['state']
+                hubstate = hubscan['scan'][hubIP]['tcp'][int(hubPort)]['state']
+                hubmode = 'offline'    # Default assumption
+                if (hubstatus == 'up'):
+                    if (hubstate == 'open'):
+                        hubmode = '**online**'
                     else:
                         # Check alternate ports - 511, 1209
-                        for althubPort in ['511','1209']:
-                            hubscan=nm.scan(hubIP,althubPort,arguments='-PN')  # Scan using nmap
-                            hubstate=hubscan['scan'][hubIP]['tcp'][int(althubPort)]['state'] 
-                            if (hubstate=='open'):
-                                hubPort=althubPort
-                                hubmode='**online**'
+                        for althubPort in ['511', '1209']:
+                            hubscan = nm.scan(hubIP, althubPort, arguments='-PN')  # Scan using nmap
+                            hubstate = hubscan['scan'][hubIP]['tcp'][int(althubPort)]['state']
+                            if (hubstate == 'open'):
+                                hubPort = althubPort
+                                hubmode = '**online**'
                 hubstatfile.write(hubName+'  |  '+hubProtocol+'://'+hubIP+':'+hubPort+'\t|'+hubmode+'   \n')
 
 # Write to README file
-readmeParts=['docs/README_head.md','hubstat.txt','docs/README_tail.md']
-with open('docs/README.md','w') as readmeFile:
+readmeParts = ['docs/README_head.md', 'hubstat.txt', 'docs/README_tail.md']
+with open('docs/README.md', 'w') as readmeFile:
     for fname in readmeParts:
-        with open(fname,'r') as infile:
+        with open(fname, 'r') as infile:
             readmeFile.write(infile.read())
