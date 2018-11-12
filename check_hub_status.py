@@ -7,20 +7,20 @@ from datetime import datetime
 
 def getHubData(hubline):
     'Returns hub data extracted from list'
-    hubName = hubline[0].strip()
-    hubProtocol = hubline[1].split('://', 1)[0].strip()
-    hubAddr = hubline[1].split('://', 1)[1].strip()
-    hubIP = hubAddr.split(':', 1)[0]
-    hubPort = hubAddr.split(':', 1)[1]
-    return [hubName, hubProtocol, hubIP, hubPort]
+    name = hubline[0].strip()
+    protocol = hubline[1].split('://', 1)[0].strip()
+    addr = hubline[1].split('://', 1)[1].strip()
+    ip = addr.split(':', 1)[0]
+    port = addr.split(':', 1)[1]
+    return [name, protocol, ip, port]
 
 
-def getHubStat(psObj, hubIP, hubPort):
-    'Returns hubstate and hubstatus after scanning using nmap'
-    hubscan = psObj.scan(hubIP, hubPort, arguments='-PN')  # Scan using nmap
-    hubstatus = hubscan['scan'][hubIP]['status']['state']
-    hubstate = hubscan['scan'][hubIP]['tcp'][int(hubPort)]['state']
-    return [hubstatus, hubstate]
+def getHubStat(psObj, ip, port):
+    'Returns state and status after scanning using nmap'
+    hubscan = psObj.scan(ip, port, arguments='-PN')  # Scan using nmap
+    status = hubscan['scan'][ip]['status']['state']
+    state = hubscan['scan'][ip]['tcp'][int(port)]['state']
+    return [status, state]
 
 
 # Get hub ip and corresponding ports from hublist.csv to variable hublist
@@ -36,21 +36,21 @@ with open('hubstat.md', 'w') as hubstatfile:
     for hubline in hublist:
         # Handle empty lines and comments
         if hubline and (hubline[0][0] != '#'):
-            [hubName, hubProtocol, hubIP, hubPort] = getHubData(hubline)
-            [hubstatus, hubstate] = getHubStat(psObj, hubIP, hubPort)
-            hubmode = 'offline'    # Default assumption
-            if (hubstatus == 'up'):
-                if (hubstate == 'open'):
-                    hubmode = '**online**'
+            [name, protocol, ip, port] = getHubData(hubline)
+            [status, state] = getHubStat(psObj, ip, port)
+            mode = 'offline'    # Default assumption
+            if (status == 'up'):
+                if (state == 'open'):
+                    mode = '**online**'
                 else:
                     # Check alternate ports - 511, 1209
-                    for althubPort in ['511', '1209']:
-                        [hubstatus, hubstate] = getHubStat(psObj, hubIP, althubPort)
-                        if (hubstate == 'open'):
-                            hubPort = althubPort
-                            hubmode = '**online**'
-            output_string = hubName+'  |  '+hubProtocol+'://'+hubIP+':'+hubPort+'\t|'+hubmode+'   \n'
-            hubstatfile.write(output_string)
+                    for altport in ['511', '1209']:
+                        [status, state] = getHubStat(psObj, ip, altport)
+                        if (state == 'open'):
+                            port = altport
+                            mode = '**online**'
+            strout = name+'  |  '+protocol+'://'+ip+':'+port+'\t|'+mode+'   \n'
+            hubstatfile.write(strout)
 
 # Write to README file
 readmeParts = ['docs/README_head.md', 'hubstat.md', 'docs/README_tail.md']
