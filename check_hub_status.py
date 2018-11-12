@@ -1,5 +1,7 @@
 #!/usr/bin/env python
-# Checks status of IIT Madras DC Hubs
+# Checks status of DC Hubs provided in csv format in hublist.csv
+# and outputs a table to hubstat.md in markdown format
+# hubstat.md is then appended to README.md in docs/ for publishing
 
 from nmap import PortScanner
 from datetime import datetime
