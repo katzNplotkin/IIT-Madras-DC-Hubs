@@ -5,5 +5,6 @@
 cd ~/WorkInProgress/IIT-Madras-DC-Hubs
 git pull 
 python check_hub_status.py
-bash auto_commit.sh
+git add hubstat.txt docs/README.md
+git commit -m 'Hub status auto-update'
 git push
