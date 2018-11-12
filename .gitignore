@@ -1,2 +1,5 @@
 *.swp
 *.pyc
+tests/*.pyc
+__pycache__
+tests/__pycache__
