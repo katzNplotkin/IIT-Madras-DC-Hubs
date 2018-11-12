@@ -3,7 +3,7 @@
 # and outputs a table to hubstat.md in markdown format
 # hubstat.md is then appended to README.md in docs/ for publishing
 
-from nmap import PortScanner
+import nmap
 from datetime import datetime
 
 
@@ -30,7 +30,7 @@ with open('hublist.csv', 'r') as hublistfile:
     hublist = [line.split(',') for line in hublistfile]
 
 # Check status of hubs using ping to port
-psObj = PortScanner()    # Init PortScanner object
+psObj = nmap.PortScanner()    # Init PortScanner object
 with open('hubstat.md', 'w') as hubstatfile:
     hubstatfile.write('## Last Updated: {:%c}  \n\n'.format(datetime.now()))
     hubstatfile.write('Hubs | Address | Status  \n')
