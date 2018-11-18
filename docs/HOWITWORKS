@@ -1,2 +1,16 @@
-Every hub hosted in the network is essentially hosting software (for eg. PtokaX) running on a system
-an ip address with a specific port being listened to by the hosting software
+Every hub hosted on the network is essentially a hosting software (like PtokaX) running 
+on a system. The hub address specified in the format dchub://10.21.30.40:1234, is the ip address 
+of that system along with 1234 being the specific port the hosting software is 'listening' to.
+
+To check whether a hub is up or not, check_hub_status.py pings the specific port of the ip 
+address using nmap. The ip addresses required to be pinged are provided through hublist.csv
+
+chec_hub_status.py, after pinging all ip addresses, outputs the provided hub details and hub status 
+to hubstat.md in markdown format. This markdown file is appended to the README.md file used by the 
+github repostory.
+
+The script update_hub_status.sh commits and pushes this updated README.md file to github. This may 
+be automated by scheduling the execution of update_hub_status.sh as a cron job.
+
+The generated README.md file is automatically converted by the github server to html format for 
+building the webpage using the _config.yml file.
