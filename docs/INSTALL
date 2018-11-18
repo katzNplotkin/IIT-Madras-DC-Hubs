@@ -1,2 +1,3 @@
 To install dependencies
 1. sudo apt install python-nmap
+python-nmap is known to clash with the nmap module. Delete nmap if not used. 
