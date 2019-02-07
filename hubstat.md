@@ -1,10 +1,10 @@
-## Last Updated: Thu Feb  7 09:00:08 2019  
+## Last Updated: Thu Feb  7 10:00:07 2019  
 
 Hubs | Address | Status  
 --- | --- | ---  
 Hubbakkudu  |  dchub://10.21.40.129:1209	|**online**   
 Hakuna Matata  |  adc://10.22.9.152:1511	|offline   
-Konoha  |  dchub://10.22.33.59:1209	|**online**   
+Konoha  |  dchub://10.22.33.59:1209	|offline   
 FileStack  |  dchub://10.22.25.244:5110	|offline   
 Sovngarde  |  dchub://10.22.19.160:511	|offline   
 Appetite for Destruction  |  dchub://10.22.17.247:511	|offline   
