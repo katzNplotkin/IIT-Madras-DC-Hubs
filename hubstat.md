@@ -1,4 +1,4 @@
-## Last Updated: Tue Apr  9 20:00:21 2019  
+## Last Updated: Tue Apr  9 22:00:22 2019  
 
 Hubs | Address | Status  
 --- | --- | ---  
@@ -9,4 +9,4 @@ FileStack  |  dchub://10.22.25.244:5110	|offline
 Sovngarde  |  dchub://10.22.19.160:511	|offline   
 Appetite for Destruction  |  dchub://10.22.17.247:511	|offline   
 GGMU  |  dchub://10.21.138.13:1209	|offline   
-5050  |  dchub://10.22.50.50:5050	|offline   
+5050  |  dchub://10.22.50.50:5050	|**online**   
