@@ -1,4 +1,4 @@
-## Last Updated: Sun Aug  4 22:00:18 2019  
+## Last Updated: Mon Aug  5 00:00:19 2019  
 
 Hubs | Address | Status  
 --- | --- | ---  
