@@ -1,11 +1,11 @@
 
 
 
-## Last Updated: Tue Nov  5 02:00:17 2019  
+## Last Updated: Tue Nov  5 04:00:48 2019  
 
 Hubs | Address | Status  
 --- | --- | ---  
-Hubbakkudu  |  dchub://10.21.42.243:1209	|**online**   
+Hubbakkudu  |  dchub://10.21.42.243:511	|offline   
 Hakuna Matata  |  adc://10.22.9.152:1511	|offline   
 Konoha  |  dchub://10.22.33.59:1209	|offline   
 FileStack  |  dchub://10.22.25.244:5110	|offline   
