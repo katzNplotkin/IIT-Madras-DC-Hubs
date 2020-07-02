@@ -1,7 +1,7 @@
 
 
 
-## Last Updated: Thu Jul  2 18:00:06 2020  
+## Last Updated: Fri Jul  3 00:00:06 2020  
 
 Hubs | Address | Status  
 --- | --- | ---  
